@@ -1,8 +1,30 @@
-# A description of what this class does
+# Demonstrate how to use the Sensitive data type
 #
-# @summary A short summary of the purpose of this class
+# @summary Demonstrate how to use the Sensitive data type
 #
 # @example
-#   include demo_sensitive_puppet
-class demo_sensitive_puppet {
+#   $pw = Sensitive('my_password')
+#
+#   class { demo_sensitive_puppet:
+#     password => $pw,
+#   }
+#
+class demo_sensitive_puppet (
+  Sensitive[String[1]] $password,
+) {
+  notify { 'Wrapped Password':
+    message => $password,
+    before  => File['secrets_file'],
+  }
+
+  $secrets_file = $facts['os']['family'] ? {
+    'windows' => 'C:/secrets_file',
+    default   => '/tmp/secrets_file',
+  }
+
+  file { 'secrets_file':
+    ensure  => file,
+    path    => $secrets_file,
+    content => unwrap($password),
+  }
 }

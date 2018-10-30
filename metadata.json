@@ -2,9 +2,11 @@
   "name": "genebean-demo_sensitive_puppet",
   "version": "0.1.0",
   "author": "Gene Liverman",
-  "summary": "",
+  "summary": "Demonstrates using and testing the Sensitive data type",
   "license": "BSD-3-Clause",
-  "source": "",
+  "source": "https://github.com:genebean/genebean-demo_sensitive_puppet.git",
+  "project_page": "https://github.com/genebean/genebean-demo_sensitive_puppet",
+  "issues_url": "https://github.com/genebean/genebean-demo_sensitive_puppet/issues",
   "dependencies": [
 
   ],
